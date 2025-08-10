@@ -1,0 +1,6 @@
+hcloud_token        = "YOUR_HCLOUD_TOKEN"
+ssh_public_key_path = "~/.ssh/hetzner_ed25519"
+server_name         = "mpay-demo-1"
+server_type         = "cpx11"
+server_location     = "hel1"
+

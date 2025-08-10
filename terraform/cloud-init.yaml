@@ -1,0 +1,11 @@
+#cloud-config
+package_update: true
+packages:
+  - git
+  - docker.io
+runcmd:
+  - systemctl enable docker
+  - systemctl start docker
+  - usermod -aG docker root || true
+  - ufw disable || true
+

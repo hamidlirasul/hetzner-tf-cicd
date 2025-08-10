@@ -1,0 +1,70 @@
+provider "hcloud" {
+  token = var.hcloud_token
+}
+
+resource "hcloud_ssh_key" "local" {
+  name       = "local-key"
+  public_key = file(var.ssh_public_key_path)
+}
+
+resource "hcloud_firewall" "web_fw" {
+  name = "web-allow-22-80-443"
+
+  # inbound
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "22"
+    source_ips = ["0.0.0.0/0", "::/0"]
+  }
+
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "80"
+    source_ips = ["0.0.0.0/0", "::/0"]
+  }
+
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "443"
+    source_ips = ["0.0.0.0/0", "::/0"]
+  }
+
+  # outbound (now valid)
+  rule {
+    direction       = "out"
+    protocol        = "icmp"
+    destination_ips = ["0.0.0.0/0", "::/0"]
+  }
+
+  rule {
+    direction       = "out"
+    protocol        = "tcp"
+    port            = "1-65535"
+    destination_ips = ["0.0.0.0/0", "::/0"]
+  }
+
+  rule {
+    direction       = "out"
+    protocol        = "udp"
+    port            = "1-65535"
+    destination_ips = ["0.0.0.0/0", "::/0"]
+  }
+}
+
+resource "hcloud_server" "vm" {
+  name         = var.server_name
+  server_type  = var.server_type
+  image        = var.image
+  location     = var.server_location
+  ssh_keys     = [hcloud_ssh_key.local.id]
+  user_data    = file("${path.module}/cloud-init.yaml")
+  firewall_ids = [hcloud_firewall.web_fw.id]
+}
+
+output "server_ipv4" {
+  value = hcloud_server.vm.ipv4_address
+}
+
