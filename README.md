@@ -1,4 +1,4 @@
-# Hetzner Terraform + Docker + GitHub Actions (Linux → Linux)
+# Hetzner Terraform + Docker + GitHub Actions
 
 To confirm the project is running end-to-end, open:
 
