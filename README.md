@@ -338,25 +338,5 @@ Trigger the pipeline:
 
 ---
 
-## 🚀 Quick Start (from zero)
 
-```bash
-# 1) Clone or create the repo and add files (this project)
-git init && git add . && git commit -m "Initial: Terraform + app + CI"
-git branch -M main
-git remote add origin https://github.com/<you>/hetzner-tf-cicd.git
-git push -u origin main
-
-# 2) Provision infra
-cd terraform
-terraform init
-terraform apply -auto-approve
-
-# 3) Add GitHub secrets (as above), then push a change or run the workflow
-
-# 4) Visit the app
-curl http://<server_ipv4>/
-```
-
----
 
