@@ -39,7 +39,6 @@ hetzner-tf-cicd/
 │  ├─ versions.tf
 │  ├─ variables.tf
 │  ├─ main.tf
-│  ├─ outputs.tf
 │  ├─ cloud-init.yaml
 │  └─ terraform.tfvars            # local only (ignored by .gitignore)
 ├─ app/
