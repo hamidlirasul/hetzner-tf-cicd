@@ -343,12 +343,3 @@ curl http://<server_ipv4>/
 
 ---
 
-## 🔐 Security Notes
-
-- Never commit **`terraform.tfvars`**, **private keys**, or **secrets**.
-- Rotate tokens/keys periodically.
-- Consider creating a non‑root deploy user (limited sudo) and disabling root SSH login.
-- For HTTPS/Let’s Encrypt, add a reverse proxy (Caddy/Traefik/Nginx).
-
----
-
