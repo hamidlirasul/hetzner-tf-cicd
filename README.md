@@ -1,5 +1,23 @@
 # Hetzner Terraform + Docker + GitHub Actions (Linux → Linux)
 
+To confirm the project is running end-to-end, open:
+
+**http://65.21.178.37/**
+
+You should see this exact text in your browser:
+
+```
+Hello from MPay demo on Hetzner via Terraform + GitHub Actions!
+```
+
+Or verify from the terminal:
+
+```bash
+curl -s http://65.21.178.37/
+# Expected:
+# Hello from MPay demo on Hetzner via Terraform + GitHub Actions!
+```
+
 Provision a Hetzner Cloud VM with **Terraform**, install **Docker** via cloud‑init, build a tiny Flask app into a Docker image, push to **Docker Hub**, and **deploy over SSH** using **GitHub Actions**.
 
 ---
